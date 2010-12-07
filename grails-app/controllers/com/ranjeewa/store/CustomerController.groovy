@@ -1,5 +1,7 @@
 package com.ranjeewa.store
 
+import grails.plugins.springsecurity.Secured
+
 class CustomerController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
@@ -41,6 +43,7 @@ class CustomerController {
         }
     }
 
+    @Secured(['ROLE_ADMIN'])
     def edit = {
         def customerInstance = Customer.get(params.id)
         if (!customerInstance) {
